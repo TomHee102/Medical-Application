@@ -1,6 +1,6 @@
 # Medical Application
 
-  Medical Application for SHU module 1st year Module in order to access patient data via phpMyAdmin database.
+  Medical Application for SHU module 1st year Module in order to access patient data.
 
 # Database Setup
 
