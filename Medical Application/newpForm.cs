@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ConnectDatabase;
+using Google.Protobuf.WellKnownTypes;
 using MySql.Data.MySqlClient;
 
 namespace Medical_Application
@@ -67,13 +68,21 @@ namespace Medical_Application
                 ward = "0";
             }
 
-            con.cn.Open();
-            cmd = new MySqlCommand("INSERT INTO patient (idpatient, fname, lname, address, inpatient, ward) " +
-                "VALUES ('"+ idpatient +"','" + fname + "', '" + lname + "', '" + address + "', " + inpatient + ", " + ward + ")", con.cn);
-            cmd.ExecuteNonQuery();
-            con.cn.Close();
+            if(fname != "" && lname != "" && address != "")
+            {
+                con.cn.Open();
+                cmd = new MySqlCommand("INSERT INTO patient (idpatient, fname, lname, address, inpatient, ward) " +
+                    "VALUES ('" + idpatient + "','" + fname + "', '" + lname + "', '" + address + "', " + inpatient + ", " + ward + ")", con.cn);
+                cmd.ExecuteNonQuery();
+                con.cn.Close();
 
-            this.Close();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Please fill out all required fields.");
+            }
+            
         }
 
         private void newpForm_Load(object sender, EventArgs e)

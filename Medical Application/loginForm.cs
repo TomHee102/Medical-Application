@@ -22,6 +22,7 @@ namespace Medical_Application
 
         // Relevant variables
         public static string user;
+        public static string userRole;
         public loginForm()
         {
             InitializeComponent();
@@ -39,11 +40,21 @@ namespace Medical_Application
             user = userField.Text;
 
             con.cn.Open();
-            cmd = new MySqlCommand("SELECT COUNT(*) from staff INNER JOIN auth ON idstaff = auth_idstaff WHERE idstaff ='"+ userField.Text +"' AND password ='"+ passField.Text +"'", con.cn);
+            cmd = new MySqlCommand("SELECT COUNT(*), role from staff INNER JOIN auth ON idstaff = auth_idstaff WHERE idstaff ='"+ userField.Text +"' AND password ='"+ passField.Text +"'", con.cn);
             cmd.ExecuteNonQuery();
             dt = new DataTable();
             da = new MySqlDataAdapter(cmd);
             da.Fill(dt);
+
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    userRole = reader["role"].ToString();
+                }
+            }
+
+            Console.WriteLine(userRole);
 
             if (dt.Rows[0][0].ToString() == "1")
             {
