@@ -35,6 +35,7 @@
             this.indexGridView = new System.Windows.Forms.DataGridView();
             this.refreshButton = new System.Windows.Forms.Button();
             this.nameLabel = new System.Windows.Forms.Label();
+            this.logoutButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.solPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.indexGridView)).BeginInit();
             this.SuspendLayout();
@@ -50,7 +51,7 @@
             // 
             // newButton
             // 
-            this.newButton.Location = new System.Drawing.Point(325, 184);
+            this.newButton.Location = new System.Drawing.Point(600, 184);
             this.newButton.Name = "newButton";
             this.newButton.Size = new System.Drawing.Size(75, 23);
             this.newButton.TabIndex = 9;
@@ -70,7 +71,7 @@
             // 
             // viewButton
             // 
-            this.viewButton.Location = new System.Drawing.Point(407, 414);
+            this.viewButton.Location = new System.Drawing.Point(681, 415);
             this.viewButton.Name = "viewButton";
             this.viewButton.Size = new System.Drawing.Size(75, 23);
             this.viewButton.TabIndex = 10;
@@ -84,7 +85,7 @@
             this.indexGridView.Location = new System.Drawing.Point(12, 213);
             this.indexGridView.Name = "indexGridView";
             this.indexGridView.ReadOnly = true;
-            this.indexGridView.Size = new System.Drawing.Size(389, 225);
+            this.indexGridView.Size = new System.Drawing.Size(663, 225);
             this.indexGridView.TabIndex = 11;
             // 
             // refreshButton
@@ -106,11 +107,22 @@
             this.nameLabel.TabIndex = 13;
             this.nameLabel.Text = "<staff name>";
             // 
+            // logoutButton
+            // 
+            this.logoutButton.Location = new System.Drawing.Point(713, 12);
+            this.logoutButton.Name = "logoutButton";
+            this.logoutButton.Size = new System.Drawing.Size(75, 23);
+            this.logoutButton.TabIndex = 14;
+            this.logoutButton.Text = "Logout";
+            this.logoutButton.UseVisualStyleBackColor = true;
+            this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
+            // 
             // indexForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.nameLabel);
             this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.indexGridView);
@@ -134,5 +146,6 @@
         private System.Windows.Forms.DataGridView indexGridView;
         private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.Label nameLabel;
+        private System.Windows.Forms.Button logoutButton;
     }
 }

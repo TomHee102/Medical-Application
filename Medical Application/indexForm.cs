@@ -23,10 +23,22 @@ namespace Medical_Application
 
         //Relevant Variables
         public static string ID;
+        public static string viewType;
+
         public indexForm()
         {
             InitializeComponent();
             con.Connect();
+
+            if (loginForm.userRole == "Doctor")
+            {
+                viewType = "patient";
+            }
+            else if (loginForm.userRole == "Admin")
+            {
+                viewType = "staff";
+                viewButton.Hide();
+            }
 
             // Data Initialisation + Label Assignment
             userIdLabel.Text = loginForm.user;
@@ -45,7 +57,7 @@ namespace Medical_Application
             con.cn.Close();           
 
             con.cn.Open();
-            cmd = new MySqlCommand("Select * from patient", con.cn);
+            cmd = new MySqlCommand("Select * from "+ viewType, con.cn);
             cmd.ExecuteNonQuery();
             dt = new DataTable();
             da = new MySqlDataAdapter(cmd);
@@ -57,7 +69,7 @@ namespace Medical_Application
         {
             userIdLabel.Text = loginForm.user;
             con.cn.Open();
-            cmd = new MySqlCommand("Select * from patient", con.cn);
+            cmd = new MySqlCommand("Select * from "+ viewType, con.cn);
             cmd.ExecuteNonQuery();
             dt = new DataTable();
             da = new MySqlDataAdapter(cmd);
@@ -80,10 +92,25 @@ namespace Medical_Application
         }
         private void newpButton_Click(object sender, EventArgs e)
         {
-            ShowTab(new newpForm());
+            if (loginForm.userRole == "Doctor")
+            {
+                ShowTab(new newpForm());
+            }
+            else if (loginForm.userRole == "Admin")
+            {
+                ShowTab(new newsForm());
+            }
+
         }
         public void ShowTab(Form input)
         {
+            input.Show();
+        }
+        public void NewTab(Form input)
+        {
+
+            this.Hide();
+            input.Closed += (s, args) => this.Close();
             input.Show();
         }
         private string StoreSelectedRow()
@@ -102,6 +129,11 @@ namespace Medical_Application
             {
                 return "null";
             }
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            NewTab(new loginForm());
         }
     }
 }

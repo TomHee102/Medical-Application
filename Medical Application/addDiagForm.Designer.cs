@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.appointComboBox = new System.Windows.Forms.ComboBox();
             this.appointmentLabel = new System.Windows.Forms.Label();
             this.diagDetailLabel = new System.Windows.Forms.Label();
             this.diagDetailTextBox = new System.Windows.Forms.TextBox();
@@ -37,13 +37,14 @@
             this.entrySubmitButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // appointComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 25);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 0;
+            this.appointComboBox.FormattingEnabled = true;
+            this.appointComboBox.Location = new System.Drawing.Point(12, 25);
+            this.appointComboBox.Name = "appointComboBox";
+            this.appointComboBox.Size = new System.Drawing.Size(121, 21);
+            this.appointComboBox.TabIndex = 0;
+            this.appointComboBox.SelectedIndexChanged += new System.EventHandler(this.appointComboBox_SelectIndexChanged);
             // 
             // appointmentLabel
             // 
@@ -108,7 +109,7 @@
             this.Controls.Add(this.diagDetailTextBox);
             this.Controls.Add(this.diagDetailLabel);
             this.Controls.Add(this.appointmentLabel);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.appointComboBox);
             this.Name = "addDiagForm";
             this.Text = "Add Entry for <patient id>";
             this.Load += new System.EventHandler(this.addDiagnosis_Load);
@@ -119,7 +120,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox appointComboBox;
         private System.Windows.Forms.Label appointmentLabel;
         private System.Windows.Forms.Label diagDetailLabel;
         private System.Windows.Forms.TextBox diagDetailTextBox;

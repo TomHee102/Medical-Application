@@ -64,6 +64,7 @@
             this.passField.Size = new System.Drawing.Size(100, 20);
             this.passField.TabIndex = 2;
             this.passField.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.passField.UseSystemPasswordChar = true;
             // 
             // userField
             // 

@@ -28,17 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.patientidLabel = new System.Windows.Forms.Label();
             this.addEntryButton = new System.Windows.Forms.Button();
             this.patientnameLabel = new System.Windows.Forms.Label();
             this.diagnosisListBox = new System.Windows.Forms.ListBox();
             this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.appointmentListBox = new System.Windows.Forms.ListBox();
+            this.appointmentContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.appointmentSubmit = new System.Windows.Forms.Button();
             this.timePicker = new System.Windows.Forms.DateTimePicker();
-            this.prescriptionListBox = new System.Windows.Forms.ListBox();
             this.appointmentLabel = new System.Windows.Forms.Label();
             this.refreshButton = new System.Windows.Forms.Button();
+            this.prescriptionListBox = new System.Windows.Forms.ListBox();
+            this.appointmentContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // patientidLabel
@@ -79,6 +83,7 @@
             this.diagnosisListBox.Name = "diagnosisListBox";
             this.diagnosisListBox.Size = new System.Drawing.Size(338, 355);
             this.diagnosisListBox.TabIndex = 4;
+            this.diagnosisListBox.SelectedIndexChanged += new System.EventHandler(this.diagnosisListBox_SelectedIndexChanged);
             // 
             // datePicker
             // 
@@ -90,12 +95,31 @@
             // 
             // appointmentListBox
             // 
+            this.appointmentListBox.ContextMenuStrip = this.appointmentContextMenu;
             this.appointmentListBox.FormattingEnabled = true;
             this.appointmentListBox.HorizontalScrollbar = true;
             this.appointmentListBox.Location = new System.Drawing.Point(357, 290);
             this.appointmentListBox.Name = "appointmentListBox";
             this.appointmentListBox.Size = new System.Drawing.Size(200, 147);
             this.appointmentListBox.TabIndex = 6;
+            this.appointmentListBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.appointmentListBox_MouseUp);
+            this.appointmentListBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.appointmentListBox_MouseUp);
+            // 
+            // appointmentContextMenu
+            // 
+            this.appointmentContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cancelToolStripMenuItem});
+            this.appointmentContextMenu.Name = "contextMenuStrip1";
+            this.appointmentContextMenu.Size = new System.Drawing.Size(181, 48);
+            this.appointmentContextMenu.MouseClick += new System.Windows.Forms.MouseEventHandler(this.appointmentListBox_MouseUp);
+            this.appointmentContextMenu.MouseUp += new System.Windows.Forms.MouseEventHandler(this.appointmentListBox_MouseUp);
+            // 
+            // cancelToolStripMenuItem
+            // 
+            this.cancelToolStripMenuItem.Name = "cancelToolStripMenuItem";
+            this.cancelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cancelToolStripMenuItem.Text = "cancel";
+            this.cancelToolStripMenuItem.Click += new System.EventHandler(this.cancelToolStripMenuItem_Click);
             // 
             // appointmentSubmit
             // 
@@ -114,14 +138,6 @@
             this.timePicker.Size = new System.Drawing.Size(77, 20);
             this.timePicker.TabIndex = 8;
             this.timePicker.Value = new System.DateTime(2022, 1, 1, 0, 0, 0, 0);
-            // 
-            // prescriptionListBox
-            // 
-            this.prescriptionListBox.FormattingEnabled = true;
-            this.prescriptionListBox.Location = new System.Drawing.Point(357, 82);
-            this.prescriptionListBox.Name = "prescriptionListBox";
-            this.prescriptionListBox.Size = new System.Drawing.Size(200, 147);
-            this.prescriptionListBox.TabIndex = 9;
             // 
             // appointmentLabel
             // 
@@ -142,6 +158,16 @@
             this.refreshButton.UseVisualStyleBackColor = true;
             this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
             // 
+            // prescriptionListBox
+            // 
+            this.prescriptionListBox.FormattingEnabled = true;
+            this.prescriptionListBox.HorizontalScrollbar = true;
+            this.prescriptionListBox.Location = new System.Drawing.Point(357, 82);
+            this.prescriptionListBox.Name = "prescriptionListBox";
+            this.prescriptionListBox.Size = new System.Drawing.Size(200, 147);
+            this.prescriptionListBox.TabIndex = 9;
+            this.prescriptionListBox.SelectedIndexChanged += new System.EventHandler(this.diagnosisListBox_SelectedIndexChanged);
+            // 
             // viewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -161,6 +187,7 @@
             this.Name = "viewForm";
             this.Text = "<patient id>";
             this.Load += new System.EventHandler(this.viewForm_Load);
+            this.appointmentContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,8 +202,10 @@
         private System.Windows.Forms.ListBox appointmentListBox;
         private System.Windows.Forms.Button appointmentSubmit;
         private System.Windows.Forms.DateTimePicker timePicker;
-        private System.Windows.Forms.ListBox prescriptionListBox;
         private System.Windows.Forms.Label appointmentLabel;
         private System.Windows.Forms.Button refreshButton;
+        private System.Windows.Forms.ListBox prescriptionListBox;
+        private System.Windows.Forms.ContextMenuStrip appointmentContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem cancelToolStripMenuItem;
     }
 }
